@@ -8,9 +8,10 @@ attr_accessor :sender, :receiver, :amount, :status
     @status = "pending"
   end
 
-  def both_valid?
-    sender.valid? && receiver.valid? ? true : false
+  def valid?
+    @status == "pending" && @sender.valid? && @receiver.valid? && @sender.balance > @amount
   end
+
 
   def execute_transaction 
     if both_valid? && status == "pending"
